@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>João Oliveira</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:     #F9F8F4;
+  --ink:    #111111;
+  --mid:    #666;
+  --light:  #DDDBD4;
+  --accent: #B45309;
+  --tint:   #FDF5E8;
+  --serif:  'Fraunces', Georgia, serif;
+  --sans:   'Inter', system-ui, sans-serif;
+  --max:    1160px;
+}
+
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--sans); font-size: 15px;
+  line-height: 1.7; -webkit-font-smoothing: antialiased;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(249,248,244,0.9); backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--light);
+  height: 56px; display: flex; align-items: center;
+  padding: 0 2.5rem; justify-content: space-between;
+}
+.nav-left { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: var(--ink); }
+.nav-avatar { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--light); }
+.nav-name { font-family: var(--serif); font-size: 0.95rem; font-weight: 400; }
+.nav-right { display: flex; align-items: center; gap: 2rem; }
+.nav-links { display: flex; gap: 2rem; list-style: none; }
+.nav-links a { font-size: 0.75rem; font-weight: 500; letter-spacing: 0.04em; text-decoration: none; color: var(--mid); transition: color 0.2s; }
+.nav-links a:hover { color: var(--ink); }
+.lang-toggle { display: flex; border: 1px solid var(--light); border-radius: 4px; overflow: hidden; }
+.lang-btn { padding: 0.25rem 0.65rem; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; border: none; background: transparent; color: var(--mid); transition: all 0.15s; }
+.lang-btn.active { background: var(--ink); color: var(--bg); }
+
+/* HERO */
+#hero {
+  min-height: 100vh; padding-top: 56px;
+  display: grid; grid-template-columns: 1fr 260px;
+  max-width: var(--max); margin: 0 auto;
+  padding-left: 2.5rem; padding-right: 2.5rem;
+  gap: 5rem; align-items: center;
+}
+.hero-content { padding: 5rem 0; }
+.hero-status { display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.72rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mid); margin-bottom: 2rem; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #22c55e; animation: blink 2.5s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+h1.hero-h {
+  font-family: var(--serif); font-size: clamp(2.8rem, 5vw, 4.6rem);
+  font-weight: 300; line-height: 1.08; letter-spacing: -0.02em; margin-bottom: 2rem;
+}
+h1.hero-h em { font-style: italic; }
+
+.hero-sub { font-size: 1rem; color: var(--mid); line-height: 1.9; max-width: 500px; margin-bottom: 2.8rem; }
+.hero-sub strong { color: var(--ink); font-weight: 500; }
+.hero-ctas { display: flex; gap: 1rem; }
+.cta-solid { padding: 0.78rem 1.7rem; background: var(--ink); color: var(--bg); font-size: 0.8rem; font-weight: 500; text-decoration: none; border-radius: 3px; transition: opacity 0.2s; }
+.cta-solid:hover { opacity: 0.75; }
+.cta-outline { padding: 0.78rem 1.7rem; border: 1px solid var(--light); font-size: 0.8rem; font-weight: 500; text-decoration: none; color: var(--ink); border-radius: 3px; transition: border-color 0.2s; }
+.cta-outline:hover { border-color: var(--ink); }
+.cta-cal { padding: 0.78rem 1.7rem; background: var(--tint); border: 1px solid var(--accent); color: var(--accent); font-size: 0.8rem; font-weight: 500; text-decoration: none; border-radius: 3px; transition: all 0.2s; }
+.cta-cal:hover { background: var(--accent); color: var(--bg); }
+.cta-cv { padding: 0.78rem 1.7rem; border: 1px solid var(--light); font-size: 0.8rem; font-weight: 500; text-decoration: none; color: var(--mid); border-radius: 3px; transition: all 0.2s; display: inline-flex; align-items: center; gap: 0.45rem; }
+.cta-cv::before { content: "↓"; font-size: 0.85rem; }
+.cta-cv:hover { border-color: var(--ink); color: var(--ink); }
+
+.hero-photo-frame { border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; }
+.hero-photo-frame img { width: 100%; height: 100%; object-fit: cover; object-position: center 15%; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--light); margin: 0 2.5rem; }
+
+/* WRAP */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 5.5rem 2.5rem; }
+
+/* SECTION LABEL */
+.s-label { font-size: 0.68rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.14em; color: var(--accent); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 0.5rem; }
+.s-label::before { content: ''; display: block; width: 18px; height: 1px; background: var(--accent); }
+h2.s-head { font-family: var(--serif); font-size: clamp(1.9rem, 3.2vw, 2.9rem); font-weight: 300; line-height: 1.15; letter-spacing: -0.02em; }
+h2.s-head em { font-style: italic; }
+
+/* STORY */
+.story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5.5rem; align-items: center; margin-top: 3rem; }
+.story-pull { background: var(--tint); border-left: 2px solid var(--accent); padding: 1.6rem 1.8rem; border-radius: 0 8px 8px 0; margin-top: 2rem; }
+.story-pull p { font-family: var(--serif); font-size: 1.1rem; font-weight: 300; font-style: italic; line-height: 1.7; color: var(--ink); }
+.manifesto { display: flex; flex-direction: column; }
+.mf-line { font-size: 0.95rem; color: var(--ink); line-height: 1.82; padding: 1.2rem 0; border-top: 1px solid var(--light); }
+.mf-line:last-child { border-bottom: 1px solid var(--light); }
+.mf-line.dim { color: var(--mid); }
+
+/* DRIVES */
+.drives-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 3.5rem; border-top: 1px solid var(--light); }
+.drive { padding: 2.8rem 1.8rem 2.2rem; border-right: 1px solid var(--light); position: relative; overflow: hidden; transition: background 0.3s ease; cursor: default; }
+.drive:last-child { border-right: none; }
+.drive:hover { background: var(--tint); }
+.drive-n {
+  font-family: var(--serif); font-size: 5rem; font-weight: 300; line-height: 1;
+  color: var(--light); position: absolute; top: 1rem; right: 1.2rem;
+  letter-spacing: -0.03em; transition: color 0.3s ease; pointer-events: none;
+}
+.drive:hover .drive-n { color: #e8d5b8; }
+.drive-title { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; line-height: 1.3; margin-bottom: 0; position: relative; z-index: 1; }
+.drive-desc {
+  font-size: 0.78rem; color: var(--mid); line-height: 1.85;
+  max-height: 0; overflow: hidden; opacity: 0;
+  transition: max-height 0.45s ease, opacity 0.35s ease, margin 0.35s ease;
+  margin-top: 0;
+}
+.drive:hover .drive-desc { max-height: 120px; opacity: 1; margin-top: 0.9rem; }
+
+/* NOW */
+.now-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 3.5rem; border: 1px solid var(--light); border-radius: 12px; overflow: hidden; }
+.now-card { padding: 2.5rem 2.2rem; border-right: 1px solid var(--light); }
+.now-card:last-child { border-right: none; }
+.now-tag { font-size: 0.62rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--mid); margin-bottom: 1rem; }
+.now-title { font-family: var(--serif); font-size: 1.2rem; font-weight: 400; line-height: 1.3; margin-bottom: 0.9rem; }
+.now-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.9; }
+.now-desc strong { color: var(--ink); font-weight: 500; }
+
+/* PATH */
+.path-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5rem; flex-wrap: wrap; gap: 1rem; }
+.path-yrs { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--mid); }
+
+/* TIMELINE */
+.tl { position: relative; }
+.tl-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: var(--light); transform: translateX(-50%); }
+.tl-row { display: grid; grid-template-columns: 1fr 32px 1fr; padding: 3.5rem 0; border-bottom: 1px solid var(--light); position: relative; }
+.tl-row:last-child { border-bottom: none; }
+.tl-node { display: flex; justify-content: center; align-items: flex-start; padding-top: 0.4rem; position: relative; z-index: 1; }
+.tl-dot { width: 10px; height: 10px; border-radius: 50%; border: 2px solid var(--ink); background: var(--bg); }
+.tl-dot.filled { background: var(--ink); }
+.tl-dot.current { background: var(--accent); border-color: var(--accent); }
+.tl-l { padding-right: 2.5rem; text-align: right; }
+.tl-r { padding-left: 2.5rem; }
+.tl-cat { font-size: 0.6rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.16em; color: var(--mid); margin-bottom: 0.45rem; }
+.tl-title { font-family: var(--serif); font-size: 1.3rem; font-weight: 400; line-height: 1.2; margin-bottom: 0.3rem; transition: color 0.3s ease; }
+.tl-l:hover .tl-title, .tl-r:hover .tl-title { color: var(--accent); }
+.tl-org { font-size: 0.7rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--accent); margin-bottom: 0.9rem; }
+.tl-text { font-size: 0.84rem; color: var(--mid); line-height: 1.9; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease; margin-bottom: 0; }
+.tl-text strong { color: var(--ink); font-weight: 500; }
+.tl-l:hover .tl-text, .tl-r:hover .tl-text { max-height: 250px; opacity: 1; margin-bottom: 0.5rem; }
+.tl-l, .tl-r { cursor: default; }
+.tl-date { display: inline-block; margin-top: 1rem; font-size: 0.65rem; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: var(--mid); border: 1px solid var(--light); padding: 0.2rem 0.7rem; border-radius: 3px; }
+
+/* CONTACT */
+#contact { background: var(--ink); padding: 6rem 2.5rem; }
+.contact-grid { max-width: var(--max); margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center; }
+.c-head { font-family: var(--serif); font-size: clamp(2rem, 3.8vw, 3.2rem); font-weight: 300; line-height: 1.1; letter-spacing: -0.02em; color: var(--bg); margin-bottom: 1.5rem; }
+.c-head em { font-style: italic; color: #D4A843; }
+.c-sub { font-size: 0.88rem; color: #9CA3AF; line-height: 1.9; }
+.c-sub strong { color: var(--bg); font-weight: 500; }
+.c-links { display: flex; flex-direction: column; }
+.cl { display: flex; justify-content: space-between; align-items: center; text-decoration: none; color: var(--bg); padding: 1.3rem 0; border-bottom: 1px solid rgba(255,255,255,0.08); transition: opacity 0.2s; }
+.cl:first-child { border-top: 1px solid rgba(255,255,255,0.08); }
+.cl:hover { opacity: 0.5; }
+.cl-lbl { font-size: 0.6rem; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: #6B7280; margin-bottom: 0.15rem; }
+.cl-val { font-size: 0.88rem; }
+.cl-arr { color: #4B5563; transition: transform 0.2s; }
+.cl:hover .cl-arr { transform: translateX(4px); }
+
+footer { background: #0C0C0C; padding: 1.5rem 2.5rem; display: flex; justify-content: space-between; font-size: 0.68rem; color: #4B5563; letter-spacing: 0.04em; }
+
+/* FADE */
+.fade { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fade.in { opacity: 1; transform: none; }
+.d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+
+/* RESPONSIVE */
+@media (max-width: 960px) {
+  #hero { grid-template-columns: 1fr; max-width: 620px; gap: 3rem; }
+  .hero-photo-frame { aspect-ratio: 3/2; }
+  .story-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .drives-grid { grid-template-columns: 1fr 1fr; }
+  .drive-desc { max-height: 120px; opacity: 1; margin-top: 0.9rem; }
+  .now-grid { grid-template-columns: 1fr; }
+  .now-card { border-right: none; border-bottom: 1px solid var(--light); }
+  .now-card:last-child { border-bottom: none; }
+  .tl-row { grid-template-columns: 1fr; }
+  .tl-line, .tl-node { display: none; }
+  .tl-l { text-align: left; padding-right: 0; }
+  .tl-r { padding-left: 0; }
+  .tl-text { max-height: 250px; opacity: 1; margin-bottom: 0.5rem; }
+  .contact-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .wrap { padding: 4rem 1.5rem; }
+  .divider { margin: 0 1.5rem; }
+  nav { padding: 0 1.5rem; }
+  .nav-links { display: none; }
+  #hero { padding-left: 1.5rem; padding-right: 1.5rem; }
+}
+@media (max-width: 560px) {
+  .drives-grid { grid-template-columns: 1fr; }
+  .drive { border-right: none; border-bottom: 1px solid var(--light); }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-left" href="#hero">
+    <img src="photo.jpg" class="nav-avatar" alt="João">
+    <span class="nav-name">João Oliveira</span>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#story" data-en="About" data-pt="Sobre">About</a></li>
+      <li><a href="#now" data-en="Now" data-pt="Agora">Now</a></li>
+      <li><a href="#path" data-en="Path" data-pt="Percurso">Path</a></li>
+      <li><a href="#contact" data-en="Contact" data-pt="Contacto">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-en" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" id="btn-pt" onclick="setLang('pt')">PT</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-status">
+      <span class="status-dot"></span>
+      <span data-en="Open to opportunities" data-pt="Disponível">Open to opportunities</span>
+    </div>
+    <h1 class="hero-h fade">
+      <span data-en="I want to understand<br>how businesses <em>actually work.</em>" data-pt="Quero perceber<br>como as empresas <em>funcionam de verdade.</em>">I want to understand<br>how businesses <em>actually work.</em></span>
+    </h1>
+    <p class="hero-sub fade d1">
+      <span data-en="Chemical Engineer by training. I think in systems, take complex problems seriously, and care about where AI actually changes how work gets done. Moving toward the intersection of business and technology." data-pt="Engenheiro Químico de formação. Penso em sistemas, levo problemas complexos a sério e interesso-me por onde a IA realmente muda a forma como o trabalho é feito. A mover-me para a intersecção do negócio e da tecnologia.">Chemical Engineer by training. I think in systems, take complex problems seriously, and care about where AI actually changes how work gets done. Moving toward the intersection of business and technology.</span>
+    </p>
+    <div class="hero-ctas fade d2">
+      <a href="#contact" class="cta-solid" data-en="Get in touch" data-pt="Entrar em contacto">Get in touch</a>
+      <a href="#path" class="cta-outline" data-en="See my path" data-pt="Ver o meu percurso">See my path</a>
+      <a href="https://calendar.app.google/5Wwz6GrnTQcPDMwj8" target="_blank" class="cta-cal" data-en="Book a call" data-pt="Agendar uma chamada">Book a call</a>
+      <a href="JoaoPaisAlves_CV.pdf" download class="cta-cv" data-en="Download CV" data-pt="Download CV">Download CV</a>
+    </div>
+  </div>
+  <div class="fade d1">
+    <div class="hero-photo-frame">
+      <img src="data:image/jpeg;base64,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" alt="João Oliveira">
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="wrap">
+    <div class="s-label fade" data-en="About" data-pt="Sobre">About</div>
+    <div class="story-grid fade">
+      <div>
+        <h2 class="s-head" style="margin-bottom:0">
+          <span data-en="The engineer who<br>got <em>curious.</em>" data-pt="O engenheiro que<br>ficou <em>curioso.</em>">The engineer who<br>got <em>curious.</em></span>
+        </h2>
+        <div class="story-pull">
+          <p data-en="I believe AI's job is to handle the work nobody actually wants to do, so that people who are good at something can spend their energy on exactly that." data-pt="Acredito que o papel da IA é fazer o trabalho que ninguém quer fazer, para que as pessoas que são boas em algo possam gastar a sua energia exatamente nisso.">I believe AI's job is to handle the work nobody actually wants to do, so that people who are good at something can spend their energy on exactly that.</p>
+        </div>
+      </div>
+      <div class="manifesto">
+        <p class="mf-line" data-en="I think in systems, but I am drawn to decisions, not reports." data-pt="Penso em sistemas, mas interesso-me por decisões, não por relatórios.">I think in systems, but I am drawn to decisions, not reports.</p>
+        <p class="mf-line" data-en="I work best in ambiguity, across functions, in the gap between what the org chart shows and what actually gets done." data-pt="Trabalho melhor na ambiguidade, entre funções, no espaço entre o que o organograma mostra e o que realmente acontece.">I work best in ambiguity, across functions, in the gap between what the org chart shows and what actually gets done.</p>
+        <p class="mf-line" data-en="When I see something that needs fixing, I fix it. I do not wait to be asked." data-pt="Quando vejo algo que precisa de ser resolvido, resolvo. Não espero que me peçam.">When I see something that needs fixing, I fix it. I do not wait to be asked.</p>
+        <p class="mf-line" data-en="I want to be inside companies, close to the product, the strategy, the operations, not just the technical layer." data-pt="Quero estar dentro das empresas, perto do produto, da estratégia, das operações, não apenas da camada técnica.">I want to be inside companies, close to the product, the strategy, the operations, not just the technical layer.</p>
+        <p class="mf-line dim" data-en="The interesting problems live at the intersection of business and technology. That is where I want to work." data-pt="Os problemas interessantes vivem na intersecção do negócio e da tecnologia. É aí que quero trabalhar.">The interesting problems live at the intersection of business and technology. That is where I want to work.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- NOW -->
+<section id="now">
+  <div class="wrap">
+    <div class="s-label fade" data-en="Now" data-pt="Agora">Now</div>
+    <h2 class="s-head fade" data-en="Where I am <em>today.</em>" data-pt="Onde estou <em>hoje.</em>">Where I am <em>today.</em></h2>
+    <div class="now-grid fade" style="margin-top:3rem">
+      <div class="now-card">
+        <div class="now-tag" data-en="LOOKING" data-pt="À PROCURA">LOOKING</div>
+        <div class="now-title" data-en="The next move, chosen carefully" data-pt="O próximo passo, escolhido com cuidado">The next move, chosen carefully</div>
+        <div class="now-desc">
+          <span data-en="I recently left process engineering. I am looking for roles at the intersection of business and technology, the kind where analytical thinking, AI awareness, and the ability to work across teams all matter. Not a purely technical role. <strong>Somewhere close to decisions, with real problems to work on.</strong>" data-pt="Saí recentemente da engenharia de processo. Procuro funções na intersecção do negócio e da tecnologia, aquelas onde o pensamento analítico, a consciência de IA e a capacidade de trabalhar entre equipas fazem a diferença. Não uma função puramente técnica. <strong>Algures perto das decisões, com problemas reais para resolver.</strong>">I recently left process engineering. I am looking for roles at the intersection of business and technology, the kind where analytical thinking, AI awareness, and the ability to work across teams all matter. Not a purely technical role. <strong>Somewhere close to decisions, with real problems to work on.</strong></span>
+        </div>
+      </div>
+      <div class="now-card">
+        <div class="now-tag" data-en="BUILDING" data-pt="A CONSTRUIR">BUILDING</div>
+        <div class="now-title" data-en="A practice for making AI useful" data-pt="Uma prática para tornar a IA útil">A practice for making AI useful</div>
+        <div class="now-desc">
+          <span data-en="The best thing I have shipped professionally is a Copilot knowledge agent that an engineering team actually uses. That became my bar: <strong>does it change how someone works, or just look useful in a demo?</strong> I am now experimenting beyond a single platform, using different LLMs to build small automations and personal projects. Less about the technology, more about what it actually replaces." data-pt="A melhor coisa que lancei profissionalmente é um agente de conhecimento Copilot que uma equipa de engenharia usa de facto. Isso tornou-se o meu critério: <strong>muda a forma como alguém trabalha, ou apenas parece útil numa demo?</strong> Agora experimento além de uma plataforma, usando diferentes LLMs para construir automações e projetos pessoais. Menos sobre a tecnologia, mais sobre o que realmente substitui.">The best thing I have shipped professionally is a Copilot knowledge agent that an engineering team actually uses. That became my bar: <strong>does it change how someone works, or just look useful in a demo?</strong> I am now experimenting beyond a single platform, using different LLMs to build small automations and personal projects. Less about the technology, more about what it actually replaces.</span>
+        </div>
+      </div>
+      <div class="now-card">
+        <div class="now-tag" data-en="LEARNING" data-pt="A APRENDER">LEARNING</div>
+        <div class="now-title" data-en="What changes when AI arrives" data-pt="O que muda quando a IA chega">What changes when AI arrives</div>
+        <div class="now-desc">
+          <span data-en="I finished an AI programme at NOVA University covering Python, ML, deep learning, and computer vision. Now I am focused on the operational layer: <strong>how AI changes decision-making inside companies</strong>, not just what the tools do. I am also building skills I want sharper: data visualization, business analysis, and project management frameworks." data-pt="Completei um programa de IA na NOVA que cobriu Python, ML, deep learning e visão computacional. Agora foco-me na camada operacional: <strong>como a IA muda a tomada de decisão nas empresas</strong>, não apenas o que as ferramentas fazem. Também estou a desenvolver competências que quero mais sólidas: visualização de dados, análise de negócio e frameworks de gestão de projetos.">I finished an AI programme at NOVA University covering Python, ML, deep learning, and computer vision. Now I am focused on the operational layer: <strong>how AI changes decision-making inside companies</strong>, not just what the tools do. I am also building skills I want sharper: data visualization, business analysis, and project management frameworks.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PATH -->
+<section id="path">
+  <div class="wrap">
+    <div class="path-header fade">
+      <h2 class="s-head">
+        <span data-en="How I got <em>here.</em>" data-pt="Como cheguei <em>aqui.</em>">How I got <em>here.</em></span>
+      </h2>
+      <span class="path-yrs">2019 → Now</span>
+    </div>
+
+    <div class="tl">
+      <div class="tl-line"></div>
+
+      <!-- BSc -->
+      <div class="tl-row fade">
+        <div class="tl-l">
+          <div class="tl-cat" data-en="EDUCATION" data-pt="FORMAÇÃO">EDUCATION</div>
+          <div class="tl-title" data-en="Bachelor's in Chemical Engineering" data-pt="Licenciatura em Engenharia Química">Bachelor's in Chemical Engineering</div>
+          <div class="tl-org">University of Coimbra</div>
+          <div class="tl-text" data-en="Built the foundations. How to think in systems, stay rigorous when things get complicated, and not lose the thread when the problem resists. The problems were clean. That made the real world harder to ignore later." data-pt="Construí as bases. Como pensar em sistemas, manter o rigor quando as coisas complicam e não perder o fio quando o problema resiste. Os problemas eram limpos. Isso tornou o mundo real mais difícil de ignorar mais tarde.">Built the foundations. How to think in systems, stay rigorous when things get complicated, and not lose the thread when the problem resists. The problems were clean. That made the real world harder to ignore later.</div>
+          <span class="tl-date">2019 – 2022</span>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div></div>
+      </div>
+
+      <!-- GUM Summer Internship -->
+      <div class="tl-row fade">
+        <div></div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-r">
+          <div class="tl-cat" data-en="INDUSTRY · SUMMER INTERNSHIP" data-pt="INDÚSTRIA · ESTÁGIO DE VERÃO">INDUSTRY · SUMMER INTERNSHIP</div>
+          <div class="tl-title">Chemical Engineer Intern</div>
+          <div class="tl-org">GUM Chemical Solutions · Cantanhede</div>
+          <div class="tl-text" data-en="First time inside a real plant. Learning product separation methods, assisting the engineering team, analysing process parameters and running laboratory tests. The gap between classroom theory and factory reality showed up immediately." data-pt="Primeira vez dentro de uma planta real. A aprender métodos de separação de produtos, a assistir a equipa de engenharia, a analisar parâmetros de processo e a realizar testes laboratoriais. A distância entre a teoria da sala de aula e a realidade da fábrica apareceu de imediato.">First time inside a real plant. Learning product separation methods, assisting the engineering team, analysing process parameters and running laboratory tests. The gap between classroom theory and factory reality showed up immediately.</div>
+          <span class="tl-date">Jul 2023</span>
+        </div>
+      </div>
+
+      <!-- MSc -->
+      <div class="tl-row fade">
+        <div class="tl-l">
+          <div class="tl-cat" data-en="EDUCATION" data-pt="FORMAÇÃO">EDUCATION</div>
+          <div class="tl-title" data-en="Master's in Chemical Engineering" data-pt="Mestrado em Engenharia Química">Master's in Chemical Engineering</div>
+          <div class="tl-org">University of Coimbra</div>
+          <div class="tl-text" data-en="Went deeper on the technical side. More complex problems, higher stakes, and the point where you start realising how much is genuinely uncertain in real systems. Learning to work productively with that uncertainty rather than pretend it is not there." data-pt="Fui mais fundo no lado técnico. Problemas mais complexos, maiores consequências, e o ponto onde começas a perceber quanta incerteza genuína existe em sistemas reais. A aprender a trabalhar produtivamente com essa incerteza em vez de fingir que não está lá.">Went deeper on the technical side. More complex problems, higher stakes, and the point where you start realising how much is genuinely uncertain in real systems. Learning to work productively with that uncertainty rather than pretend it is not there.</div>
+          <span class="tl-date">2022 – 2024</span>
+        </div>
+        <div class="tl-node"><div class="tl-dot filled"></div></div>
+        <div></div>
+      </div>
+
+      <!-- Celbi Thesis -->
+      <div class="tl-row fade">
+        <div></div>
+        <div class="tl-node"><div class="tl-dot filled"></div></div>
+        <div class="tl-r">
+          <div class="tl-cat" data-en="INDUSTRY · THESIS" data-pt="INDÚSTRIA · TESE">INDUSTRY · THESIS</div>
+          <div class="tl-title" data-en="Eight Months in a Pulp Mill" data-pt="Oito Meses numa Fábrica de Pasta">Eight Months in a Pulp Mill</div>
+          <div class="tl-org">Celbi, S.A. · Figueira da Foz</div>
+          <div class="tl-text" data-en="Collected pulp and liquor samples across the full washing line, built a steady-state model in MATLAB, and ran economic scenarios. The theory said the optimal dilution factor was 2.4. The plant could not operate there. <strong>So I found what it could operate at, and why.</strong> That answer was more useful than the theoretical optimum." data-pt="Recolhi amostras de pasta e licor ao longo de toda a linha de lavagem, construí um modelo em MATLAB e simulei cenários económicos. A teoria dizia que o fator de diluição ótimo era 2.4. A fábrica não conseguia operar lá. <strong>Por isso encontrei onde conseguia operar, e porquê.</strong> Essa resposta foi mais útil do que o ótimo teórico.">Collected pulp and liquor samples across the full washing line, built a steady-state model in MATLAB, and ran economic scenarios. The theory said the optimal dilution factor was 2.4. The plant could not operate there. <strong>So I found what it could operate at, and why.</strong> That answer was more useful than the theoretical optimum.</div>
+          <span class="tl-date">Feb 2024 – Sept 2024</span>
+        </div>
+      </div>
+
+      <!-- Celbi Paid Internship -->
+      <div class="tl-row fade">
+        <div class="tl-l">
+          <div class="tl-cat" data-en="INDUSTRY" data-pt="INDÚSTRIA">INDUSTRY</div>
+          <div class="tl-title" data-en="Process Engineer Intern" data-pt="Estagiário de Engenharia de Processo">Process Engineer Intern</div>
+          <div class="tl-org">Celbi, S.A. · Figueira da Foz</div>
+          <div class="tl-text" data-en="Stayed on after the thesis in a paid role. Analysed hydraulic balances, studied feedstock properties, and supported process evaluation with data. Learned what it means to be responsible for findings rather than just producing them." data-pt="Fiquei após a tese numa função remunerada. Analisei balanços hidráulicos, estudei propriedades de matérias-primas e apoiei a avaliação do processo com dados. Aprendi o que significa ser responsável pelos resultados em vez de apenas os produzir.">Stayed on after the thesis in a paid role. Analysed hydraulic balances, studied feedstock properties, and supported process evaluation with data. Learned what it means to be responsible for findings rather than just producing them.</div>
+          <span class="tl-date">Dec 2024 – Feb 2025</span>
+        </div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div></div>
+      </div>
+
+      <!-- Google PM -->
+      <div class="tl-row fade">
+        <div></div>
+        <div class="tl-node"><div class="tl-dot"></div></div>
+        <div class="tl-r">
+          <div class="tl-cat" data-en="CERTIFICATION" data-pt="CERTIFICAÇÃO">CERTIFICATION</div>
+          <div class="tl-title">Google Project Management</div>
+          <div class="tl-org">Google · Professional Certificate</div>
+          <div class="tl-text" data-en="Wanted a structured vocabulary for what I was already doing in practice. Scope, stakeholders, risk. I use it." data-pt="Queria um vocabulário estruturado para o que já fazia na prática. Âmbito, stakeholders, risco. Uso-o.">Wanted a structured vocabulary for what I was already doing in practice. Scope, stakeholders, risk. I use it.</div>
+          <span class="tl-date">Jan 2025</span>
+        </div>
+      </div>
+
+      <!-- Hovione -->
+      <div class="tl-row fade">
+        <div class="tl-l">
+          <div class="tl-cat" data-en="INDUSTRY · CURRENT" data-pt="INDÚSTRIA · ATUAL">INDUSTRY · CURRENT</div>
+          <div class="tl-title" data-en="Associate Process Engineer" data-pt="Engenheiro de Processo Associado">Associate Process Engineer</div>
+          <div class="tl-org">Hovione · Lisbon · Pharma cGMP</div>
+          <div class="tl-text" data-en="First time coordinating across functions inside a regulated, global production environment. Learned that <strong>data without operational context is noise</strong>, and that structured communication matters as much as the analysis itself. Built a Copilot knowledge agent that the team actually uses. First real AI deployment I have been part of." data-pt="Primeira vez a coordenar entre funções dentro de um ambiente de produção global regulado. Aprendi que <strong>dados sem contexto operacional são ruído</strong>, e que a comunicação estruturada importa tanto como a análise em si. Construí um agente de conhecimento Copilot que a equipa realmente usa. Primeiro deploy real de IA do qual fiz parte.">First time coordinating across functions inside a regulated, global production environment. Learned that <strong>data without operational context is noise</strong>, and that structured communication matters as much as the analysis itself. Built a Copilot knowledge agent that the team actually uses. First real AI deployment I have been part of.</div>
+          <span class="tl-date">Mar 2025 – Present</span>
+        </div>
+        <div class="tl-node"><div class="tl-dot current"></div></div>
+        <div></div>
+      </div>
+
+      <!-- Samsung AI + BOORG -->
+      <div class="tl-row fade">
+        <div></div>
+        <div class="tl-node"><div class="tl-dot filled"></div></div>
+        <div class="tl-r">
+          <div class="tl-cat" data-en="TRAINING + PROJECT" data-pt="FORMAÇÃO + PROJETO">TRAINING + PROJECT</div>
+          <div class="tl-title" data-en="AI Course + BOORG" data-pt="Curso de IA + BOORG">AI Course + BOORG</div>
+          <div class="tl-org">Samsung Innovation Campus · NOVA University</div>
+          <div class="tl-text" data-en="Went from using AI tools to building them. Trained a computer vision model from scratch, shipped an OCR pipeline, a FastAPI backend, and a Flutter app. 97.9% accuracy on unseen data. What I took from it: <strong>data quality beats model sophistication, every time.</strong> And the space between a model that works and a product that works is where the real decisions happen." data-pt="Passei de usar ferramentas de IA para as construir. Treinei um modelo de visão computacional do zero, lancei um pipeline de OCR, um backend FastAPI e uma app Flutter. 97.9% de precisão em dados novos. O que retirei: <strong>a qualidade dos dados bate a sofisticação do modelo, sempre.</strong> E o espaço entre um modelo que funciona e um produto que funciona é onde as decisões reais acontecem.">Went from using AI tools to building them. Trained a computer vision model from scratch, shipped an OCR pipeline, a FastAPI backend, and a Flutter app. 97.9% accuracy on unseen data. What I took from it: <strong>data quality beats model sophistication, every time.</strong> And the space between a model that works and a product that works is where the real decisions happen.</div>
+          <span class="tl-date">Nov 2025 – Feb 2026</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <div class="fade">
+      <div class="s-label" style="color:#D4A843" data-en="Contact" data-pt="Contacto">Contact</div>
+      <h2 class="c-head">
+        <span data-en="If any of this resonates,<br>let's <em>talk.</em>" data-pt="Se algo disto fizer sentido,<br>vamos <em>falar.</em>">If any of this resonates,<br>let's <em>talk.</em></span>
+      </h2>
+      <p class="c-sub" data-en="I'm looking for roles in operations, strategy, and AI applications at companies where I can understand how the business works from the inside and help build the AI layer on top of it. <strong>If that sounds like your team, I'd like to hear from you.</strong>" data-pt="Procuro funções em operações, estratégia e aplicações de IA em empresas onde possa perceber como o negócio funciona por dentro e ajudar a construir a camada de IA por cima disso. <strong>Se isso soa à tua equipa, gostava de ouvir de ti.</strong>">I'm looking for roles in operations, strategy, and AI applications at companies where I can understand how the business works from the inside and help build the AI layer on top of it. <strong>If that sounds like your team, I'd like to hear from you.</strong></p>
+    </div>
+    <div class="c-links fade d1">
+      <a href="mailto:joaopaisalves04@gmail.com" class="cl">
+        <div><div class="cl-lbl">Email</div><div class="cl-val">joaopaisalves04@gmail.com</div></div>
+        <span class="cl-arr">→</span>
+      </a>
+      <a href="https://www.linkedin.com/in/jo%C3%A3o-pais-alves/" target="_blank" class="cl">
+        <div><div class="cl-lbl">LinkedIn</div><div class="cl-val">linkedin.com/in/joão-pais-alves</div></div>
+        <span class="cl-arr">→</span>
+      </a>
+      <a href="tel:+351968178830" class="cl">
+        <div><div class="cl-lbl">Phone</div><div class="cl-val">+351 968 178 830</div></div>
+        <span class="cl-arr">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>João Oliveira · 2026</span>
+  <span data-en="Portuguese · English · Spanish" data-pt="Português · Inglês · Espanhol">Portuguese · English · Spanish</span>
+</footer>
+
+<script>
+const io = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('in'); }), { threshold: 0.07 });
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+function setLang(lang) {
+  document.documentElement.lang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-pt').classList.toggle('active', lang === 'pt');
+  document.querySelectorAll('[data-en][data-pt]').forEach(el => {
+    el.innerHTML = el.getAttribute('data-' + lang);
+  });
+}
+</script>
+</body>
+</html>
