@@ -102,7 +102,14 @@ h1.hero-h::after { content: ''; display: block; width: 48px; height: 2px; backgr
 .item li { font-size: 0.88rem; color: var(--mid); margin-bottom: 0.4rem; }
 .item li::marker { color: var(--soft); }
 .item p { font-size: 0.88rem; color: var(--mid); margin-top: 0.8rem; max-width: 680px; }
-.section-gap { margin-top: 5rem; }
+.item-cat { font-size: 0.64rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent); margin-top: 0.3rem; }
+
+/* TIMELINE */
+.tl { position: relative; border-top: none; }
+.tl::before { content: ''; position: absolute; left: 190px; top: 0; bottom: 0; width: 1px; background: var(--light); }
+.tl .item { position: relative; border-bottom: none; padding: 1.8rem 0; }
+.tl .item::before { content: ''; position: absolute; left: 186px; top: 2.25rem; width: 9px; height: 9px; border-radius: 50%; background: var(--bg); border: 2px solid var(--soft); box-sizing: border-box; }
+.tl .item:has(.pill)::before { background: var(--accent); border-color: var(--accent); }
 
 /* CONTACT */
 #contact { background: var(--ink); color: var(--bg); }
@@ -132,6 +139,9 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
   .facts { grid-template-columns: 1fr 1fr; }
   .fact, .fact + .fact { padding: 1.2rem 1rem 1.2rem 0; border-left: none; border-bottom: 1px solid var(--light); }
   .item { grid-template-columns: 1fr; gap: 0.4rem; }
+  .tl::before { left: 4px; }
+  .tl .item { padding-left: 1.6rem; }
+  .tl .item::before { left: 0; top: 2.2rem; }
   #contact .wrap { grid-template-columns: 1fr; gap: 2.5rem; }
   .nav-links { display: none; }
 }
@@ -152,8 +162,7 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
     <div class="nav-right">
       <ul class="nav-links">
         <li><a href="#about" data-en="About" data-pt="Sobre">About</a></li>
-        <li><a href="#experience" data-en="Experience" data-pt="Experiência">Experience</a></li>
-        <li><a href="#education" data-en="Education" data-pt="Formação">Education</a></li>
+        <li><a href="#path" data-en="Path" data-pt="Percurso">Path</a></li>
         <li><a href="#contact" data-en="Contact" data-pt="Contacto">Contact</a></li>
       </ul>
       <div class="lang-toggle">
@@ -224,15 +233,24 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
 
 <div class="divider"></div>
 
-<!-- EXPERIENCE -->
-<section id="experience">
+<!-- PATH -->
+<section id="path">
   <div class="wrap">
-    <div class="s-label fade" data-en="Experience" data-pt="Experiência">Experience</div>
-    <h2 class="s-head fade" data-en="Professional experience" data-pt="Experiência profissional">Professional experience</h2>
+    <div class="s-label fade" data-en="Path" data-pt="Percurso">Path</div>
+    <h2 class="s-head fade" data-en="Experience and education" data-pt="Experiência e formação">Experience and education</h2>
 
-    <div class="list">
+    <div class="list tl">
       <div class="item fade">
-        <div class="item-date" data-en="May 2026 – Present" data-pt="Mai 2026 – Presente">May 2026 – Present</div>
+          <div class="item-meta"><div class="item-date" data-en="Oct 2026 – Present" data-pt="Out 2026 – Presente">Oct 2026 – Present</div><div class="item-cat" data-en="Language" data-pt="Língua">Language</div></div>
+          <div>
+            <div class="item-title" data-en="German language course" data-pt="Curso de alemão">German language course</div>
+            <div class="item-org">Cambridge School</div>
+            <p data-en="A new challenge, chosen to open more doors professionally and personally. Taken alongside my work at Inerco." data-pt="Um novo desafio, escolhido para abrir mais portas a nível profissional e pessoal. Em paralelo com o trabalho na Inerco.">A new challenge, chosen to open more doors professionally and personally. Taken alongside my work at Inerco.</p>
+          </div>
+        </div>
+
+      <div class="item fade">
+        <div class="item-meta"><div class="item-date" data-en="May 2026 – Present" data-pt="Mai 2026 – Presente">May 2026 – Present</div><div class="item-cat" data-en="Experience" data-pt="Experiência">Experience</div></div>
         <div>
           <div class="item-title"><span data-en="Industrial Safety Engineer" data-pt="Engenheiro de Segurança Industrial">Industrial Safety Engineer</span> <span class="pill" data-en="Current" data-pt="Atual">Current</span></div>
           <div class="item-org" data-en="Inerco Portugal · Consulting" data-pt="Inerco Portugal · Consultoria">Inerco Portugal · Consulting</div>
@@ -246,7 +264,16 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
       </div>
 
       <div class="item fade">
-        <div class="item-date" data-en="Mar 2025 – Apr 2026" data-pt="Mar 2025 – Abr 2026">Mar 2025 – Apr 2026</div>
+          <div class="item-meta"><div class="item-date" data-en="Nov 2025 – Feb 2026" data-pt="Nov 2025 – Fev 2026">Nov 2025 – Feb 2026</div><div class="item-cat" data-en="Training" data-pt="Formação complementar">Training</div></div>
+          <div>
+            <div class="item-title" data-en="Artificial Intelligence course" data-pt="Curso de Inteligência Artificial">Artificial Intelligence course</div>
+            <div class="item-org">Samsung Innovation Campus · NOVA University</div>
+            <p data-en="Python, machine learning, deep learning and computer vision. Final project, BOORG: a computer vision model (97.9% accuracy on unseen data) with an OCR pipeline, a FastAPI backend and a Flutter app." data-pt="Python, machine learning, deep learning e visão computacional. Projeto final, BOORG: um modelo de visão computacional (97,9% de precisão em dados novos) com pipeline de OCR, backend em FastAPI e app em Flutter.">Python, machine learning, deep learning and computer vision. Final project, BOORG: a computer vision model (97.9% accuracy on unseen data) with an OCR pipeline, a FastAPI backend and a Flutter app.</p>
+          </div>
+        </div>
+
+      <div class="item fade">
+        <div class="item-meta"><div class="item-date" data-en="Mar 2025 – Apr 2026" data-pt="Mar 2025 – Abr 2026">Mar 2025 – Apr 2026</div><div class="item-cat" data-en="Experience" data-pt="Experiência">Experience</div></div>
         <div>
           <div class="item-title" data-en="Associate Process Engineer" data-pt="Engenheiro de Processo Associado">Associate Process Engineer</div>
           <div class="item-org" data-en="Hovione · Lisbon · Pharmaceutical manufacturing (cGMP)" data-pt="Hovione · Lisboa · Produção farmacêutica (cGMP)">Hovione · Lisbon · Pharmaceutical manufacturing (cGMP)</div>
@@ -258,7 +285,15 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
       </div>
 
       <div class="item fade">
-        <div class="item-date" data-en="Dec 2024 – Feb 2025" data-pt="Dez 2024 – Fev 2025">Dec 2024 – Feb 2025</div>
+          <div class="item-meta"><div class="item-date" data-en="Jan 2025" data-pt="Jan 2025">Jan 2025</div><div class="item-cat" data-en="Certification" data-pt="Certificação">Certification</div></div>
+          <div>
+            <div class="item-title" data-en="Google Project Management Certificate" data-pt="Certificado Google Project Management">Google Project Management Certificate</div>
+            <div class="item-org" data-en="Google · Professional certificate" data-pt="Google · Certificado profissional">Google · Professional certificate</div>
+          </div>
+        </div>
+
+      <div class="item fade">
+        <div class="item-meta"><div class="item-date" data-en="Dec 2024 – Feb 2025" data-pt="Dez 2024 – Fev 2025">Dec 2024 – Feb 2025</div><div class="item-cat" data-en="Experience" data-pt="Experiência">Experience</div></div>
         <div>
           <div class="item-title" data-en="Process Engineer Intern" data-pt="Estagiário de Engenharia de Processo">Process Engineer Intern</div>
           <div class="item-org" data-en="Celbi · Figueira da Foz · Professional internship" data-pt="Celbi · Figueira da Foz · Estágio profissional">Celbi · Figueira da Foz · Professional internship</div>
@@ -269,7 +304,7 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
       </div>
 
       <div class="item fade">
-        <div class="item-date" data-en="Feb 2024 – Sep 2024" data-pt="Fev 2024 – Set 2024">Feb 2024 – Sep 2024</div>
+        <div class="item-meta"><div class="item-date" data-en="Feb 2024 – Sep 2024" data-pt="Fev 2024 – Set 2024">Feb 2024 – Sep 2024</div><div class="item-cat" data-en="Experience" data-pt="Experiência">Experience</div></div>
         <div>
           <div class="item-title" data-en="Process Engineer Intern" data-pt="Estagiário de Engenharia de Processo">Process Engineer Intern</div>
           <div class="item-org" data-en="Celbi · Figueira da Foz · Curricular internship (MSc thesis)" data-pt="Celbi · Figueira da Foz · Estágio curricular (tese de mestrado)">Celbi · Figueira da Foz · Curricular internship (MSc thesis)</div>
@@ -281,7 +316,7 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
       </div>
 
       <div class="item fade">
-        <div class="item-date" data-en="Jul 2023" data-pt="Jul 2023">Jul 2023</div>
+        <div class="item-meta"><div class="item-date" data-en="Jul 2023" data-pt="Jul 2023">Jul 2023</div><div class="item-cat" data-en="Experience" data-pt="Experiência">Experience</div></div>
         <div>
           <div class="item-title" data-en="Chemical Engineer Intern" data-pt="Estagiário de Engenharia Química">Chemical Engineer Intern</div>
           <div class="item-org" data-en="GUM Chemical Solutions · Cantanhede · Summer internship" data-pt="GUM Chemical Solutions · Cantanhede · Estágio de verão">GUM Chemical Solutions · Cantanhede · Summer internship</div>
@@ -290,56 +325,22 @@ footer .inner { max-width: var(--max); margin: 0 auto; padding: 1.4rem 2rem; }
           </ul>
         </div>
       </div>
-    </div>
 
-    <!-- EDUCATION -->
-    <div id="education" class="section-gap">
-      <div class="s-label fade" data-en="Education" data-pt="Formação">Education</div>
-      <h2 class="s-head fade" data-en="Education and training" data-pt="Formação académica e complementar">Education and training</h2>
-
-      <div class="list">
-        <div class="item fade">
-          <div class="item-date" data-en="Oct 2026 – Present" data-pt="Out 2026 – Presente">Oct 2026 – Present</div>
-          <div>
-            <div class="item-title" data-en="German language course" data-pt="Curso de alemão">German language course</div>
-            <div class="item-org">Cambridge School</div>
-            <p data-en="A new challenge, chosen to open more doors professionally and personally. Taken alongside my work at Inerco." data-pt="Um novo desafio, escolhido para abrir mais portas a nível profissional e pessoal. Em paralelo com o trabalho na Inerco.">A new challenge, chosen to open more doors professionally and personally. Taken alongside my work at Inerco.</p>
-          </div>
-        </div>
-
-        <div class="item fade">
-          <div class="item-date" data-en="Nov 2025 – Feb 2026" data-pt="Nov 2025 – Fev 2026">Nov 2025 – Feb 2026</div>
-          <div>
-            <div class="item-title" data-en="Artificial Intelligence course" data-pt="Curso de Inteligência Artificial">Artificial Intelligence course</div>
-            <div class="item-org">Samsung Innovation Campus · NOVA University</div>
-            <p data-en="Python, machine learning, deep learning and computer vision. Final project, BOORG: a computer vision model (97.9% accuracy on unseen data) with an OCR pipeline, a FastAPI backend and a Flutter app." data-pt="Python, machine learning, deep learning e visão computacional. Projeto final, BOORG: um modelo de visão computacional (97,9% de precisão em dados novos) com pipeline de OCR, backend em FastAPI e app em Flutter.">Python, machine learning, deep learning and computer vision. Final project, BOORG: a computer vision model (97.9% accuracy on unseen data) with an OCR pipeline, a FastAPI backend and a Flutter app.</p>
-          </div>
-        </div>
-
-        <div class="item fade">
-          <div class="item-date" data-en="Jan 2025" data-pt="Jan 2025">Jan 2025</div>
-          <div>
-            <div class="item-title" data-en="Google Project Management Certificate" data-pt="Certificado Google Project Management">Google Project Management Certificate</div>
-            <div class="item-org" data-en="Google · Professional certificate" data-pt="Google · Certificado profissional">Google · Professional certificate</div>
-          </div>
-        </div>
-
-        <div class="item fade">
-          <div class="item-date">2022 – 2024</div>
+      <div class="item fade">
+          <div class="item-meta"><div class="item-date">2022 – 2024</div><div class="item-cat" data-en="Education" data-pt="Formação">Education</div></div>
           <div>
             <div class="item-title" data-en="MSc in Chemical Engineering" data-pt="Mestrado em Engenharia Química">MSc in Chemical Engineering</div>
             <div class="item-org" data-en="University of Coimbra · Thesis at Celbi" data-pt="Universidade de Coimbra · Tese na Celbi">University of Coimbra · Thesis at Celbi</div>
           </div>
         </div>
 
-        <div class="item fade">
-          <div class="item-date">2019 – 2022</div>
+      <div class="item fade">
+          <div class="item-meta"><div class="item-date">2019 – 2022</div><div class="item-cat" data-en="Education" data-pt="Formação">Education</div></div>
           <div>
             <div class="item-title" data-en="BSc in Chemical Engineering" data-pt="Licenciatura em Engenharia Química">BSc in Chemical Engineering</div>
             <div class="item-org" data-en="University of Coimbra" data-pt="Universidade de Coimbra">University of Coimbra</div>
           </div>
         </div>
-      </div>
     </div>
   </div>
 </section>
